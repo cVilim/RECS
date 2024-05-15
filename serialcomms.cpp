@@ -18,7 +18,6 @@ bool serialcomms::isConnected() const {
 bool serialcomms::connectTo(const QString &portName, qint32 baudRate){
     serialPort->setBaudRate(baudRate);
     serialPort->setPortName(portName);
-
     serialPort->setDataBits(QSerialPort::Data8);
     serialPort->setParity(QSerialPort::NoParity);
     serialPort->setStopBits(QSerialPort::OneStop);
@@ -48,6 +47,14 @@ void serialcomms::dataSend(const QByteArray &data){
 }
 
 void serialcomms::handleReadyRead(){
-    QByteArray data = serialPort->readLine();
-    emit dataReceived(data);
+    buffer.append(serialPort->readAll());
+    if(buffer.contains('\n')){
+        QStringList dataList = QString(buffer).split('\n', Qt::SkipEmptyParts);
+        for(const QString &Oline : dataList){
+            QString line = Oline;
+            line.replace('\r', "");
+            emit dataReceived(line.split(" "));
+        }
+        buffer.clear();
+    }
 }

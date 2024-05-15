@@ -12,13 +12,11 @@ CONFIG += c++17
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
-    serialcomms.cpp \
-    serialparser.cpp
+    serialcomms.cpp
 
 HEADERS += \
     mainwindow.h \
-    serialcomms.h \
-    serialparser.h
+    serialcomms.h
 
 FORMS += \
     mainwindow.ui

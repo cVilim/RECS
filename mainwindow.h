@@ -21,7 +21,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 private slots:
-    void handleSerialData(const QByteArray &data);
+    void handleSerialData(const QStringList &data);
 private:
     Ui::MainWindow *ui;
     serialcomms serial;

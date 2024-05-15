@@ -20,12 +20,13 @@ public:
     void dataSend(const QByteArray &data);
 
 signals:
-    void dataReceived(const QByteArray &data);
+    void dataReceived(const QStringList &data);
 
 private slots:
     void handleReadyRead();
 private:
     QSerialPort *serialPort;
+    QByteArray buffer;
 };
 
 #endif // SERIALCOMMS_H
