@@ -20,7 +20,7 @@ public:
     void dataSend(const QByteArray &data);
 
 signals:
-    void dataReceived(const QStringList &data);
+    void dataReceived(const QVector<double> &data);
 
 private slots:
     void handleReadyRead();

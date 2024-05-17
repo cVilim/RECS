@@ -12,7 +12,7 @@ MainWindow::MainWindow(QWidget *parent)
     serial.connectTo("COM3", 115200);
     if(!serial.isConnected())
     {
-        QMessageBox::warning(this, "Error 1", "Unable to connect to serial port\nCheck if the device is connected!");
+        QMessageBox::warning(this, "Error 1", "Unable to connect to serial port\n-Check if the device is connected!");
     }
 
     connect(&serial, &serialcomms::dataReceived, this, &MainWindow::handleSerialData);
@@ -24,6 +24,6 @@ MainWindow::~MainWindow()
     void disconnectFrom();
 }
 
-void MainWindow::handleSerialData(const QStringList &data){
+void MainWindow::handleSerialData(const QVector<double> &data){
     qDebug() << data;
 }

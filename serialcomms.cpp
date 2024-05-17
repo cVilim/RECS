@@ -50,10 +50,24 @@ void serialcomms::handleReadyRead(){
     buffer.append(serialPort->readAll());
     if(buffer.contains('\n')){
         QStringList dataList = QString(buffer).split('\n', Qt::SkipEmptyParts);
-        for(const QString &Oline : dataList){
-            QString line = Oline;
-            line.replace('\r', "");
-            emit dataReceived(line.split(" "));
+        for(const QString &line : dataList){
+            QString cleanLine = line;
+            cleanLine.remove('\r');
+            QStringList stringValues = cleanLine.split('|');
+
+            QVector<double> sensorValue;
+
+            for(const QString &stringValue : stringValues){
+                bool isOk;
+                double value = stringValue.toDouble(&isOk);
+                if(isOk){
+                    sensorValue.append(value);
+                }
+                else{
+                    qWarning() << "Conversion to double failed for value:" << stringValue;
+                }
+            }
+            emit dataReceived(sensorValue);
         }
         buffer.clear();
     }
