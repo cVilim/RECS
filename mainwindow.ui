@@ -14,17 +14,17 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QWidget" name="temps" native="true">
+   <widget class="QCustomPlot" name="temps" native="true">
     <property name="geometry">
      <rect>
-      <x>1030</x>
+      <x>1020</x>
       <y>540</y>
-      <width>851</width>
+      <width>861</width>
       <height>431</height>
      </rect>
     </property>
    </widget>
-   <widget class="QWidget" name="pressures" native="true">
+   <widget class="QCustomPlot" name="pressures" native="true">
     <property name="geometry">
      <rect>
       <x>1030</x>
@@ -92,6 +92,14 @@
    </property>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QCustomPlot</class>
+   <extends>QWidget</extends>
+   <header location="global">qcustomplot.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
