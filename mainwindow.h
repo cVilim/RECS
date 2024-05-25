@@ -9,6 +9,8 @@
 #include <QThread>
 #include "qcustomplot.h"
 #include "globals.h"
+#include "graphhandler.h"
+#include "GraphSetup.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -24,15 +26,16 @@ public:
     ~MainWindow();
 
 private slots:
-    void handleSerialData(const QVector<double> &data);
+    //void handleSerialData(const QVector<double> &data);
 
 private:
     Ui::MainWindow *ui;
-    serialcomms serial; // Assuming serialcomms is a custom class
+    serialcomms serial;
 
     QSharedPointer<QCPAxisTickerTime> timeTickerDisplay();
-    void graphSetupPressures(const QString &xlabel, const QString &ylabel, QSharedPointer<QCPAxisTickerTime> ticker);
-    void graphSetupTemps(const QString &xlabel, const QString &ylabel, QSharedPointer<QCPAxisTickerTime> ticker);
+    //void graphSetupPressures(const QString &xlabel, const QString &ylabel, QSharedPointer<QCPAxisTickerTime> ticker);
+    //void graphSetupTemps(const QString &xlabel, const QString &ylabel, QSharedPointer<QCPAxisTickerTime> ticker);
     void setupGraph(QCustomPlot *customPlot, const QString &xlabel, const QString &ylabel, QSharedPointer<QCPAxisTickerTime> ticker);
+    GraphHandler *graphHandler;
 };
 #endif // MAINWINDOW_H
